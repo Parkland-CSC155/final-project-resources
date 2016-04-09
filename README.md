@@ -5,16 +5,19 @@ This page supplements the project requirements document by providing more specif
 ## JSON-based API
 The JSON-based API should handle the following URL patterns: 
 
-- `/api/search/{searchText}?page={pageNumber}` 
+- `/api/search/{searchText}?page={pageNumber}&apiKey={apiKey}` 
 returns an array of nutrition items matching the `searchText` (broken into 25 record pages)
 
-- `/api/list?page={pageNumber}`
+- `/api/list?page={pageNumber}&apiKey={apiKey}`
 returns an ordered list of nutrition items broken into 25 record pages
 
-- `/api/{id}` 
+- `/api/{id}&apiKey={apiKey}` 
 returns a specific nutrition item by id
 
-##Web Application/Web Site
+- each request to an API URL should be inspected to contain a valid `apiKey`. It is up to you how you determine what a 'valid' `apiKey` is
+  - your server should return a `401` status if no `apiKey` is present or the `apiKey` is invalid
+
+## Web Application/Web Site
 - A login page. Users must authenticate in order to gain access to the rest of the site pages
 - A logout page.
 - A list page of nutrition items ordered alphabetically, broken into 25 record pages
@@ -39,4 +42,4 @@ The instructor will upload datasets for a variety of database platoforms (typica
 ## How does a team work together on a single code-base?
 - The [GitHub Flow](https://guides.github.com/introduction/flow/) process is a proven system for multiple individuals to work together on a single codebase
 - Here's some info on [Pull Requests](https://help.github.com/articles/using-pull-requests/) and [Branches](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) if you would like to better understand them
-- heres some more [Info on collaborating in GitHub](https://help.github.com/categories/collaborating-on-projects-using-issues-and-pull-requests/)
+- Heres some more [Info on collaborating in GitHub](https://help.github.com/categories/collaborating-on-projects-using-issues-and-pull-requests/)
