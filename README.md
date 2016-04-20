@@ -42,6 +42,18 @@ The instructor will upload datasets for a variety of database platoforms (typica
 - you will likely need additional tables in your database to support user authentication and or other features you decide to build. Do not hesitate to create those additional tables
 
 # Tips and Resources
+## Deploying to Azure Taking Forever?
+Tired of waiting on your internet connection to upload the huge `node_modules` folder everytime you want to make a deployment. Here are a few tricks to speed it up. 
+#### Run NPM Install on the Server __AFTER__ you copy your code
+- This one requires use of the `DebugConsole` on Azure. Use FTP to upload all of your files _EXCEPT_ your `node_modules` folder. (thus cutting down your overall upload time significantly)
+- Go to your `*.scm.azurewebsites.net` URL (see [Here](https://blogs.msdn.microsoft.com/cdndevs/2015/04/01/the-kudu-debug-console-azure-websites-best-kept-secret/) for more info)
+- Go to `<your-site>.scm.azurewebsites.net/DebugConsole` and navigate to the `site\wwwroot` folder
+- Run `npm install --production` on the command line in the browser window. This will install all the packages in your package.json for your app.
+
+#### Use Git for Deployments
+Another option for deployments is actually just using Git - [See HERE](https://azure.microsoft.com/en-us/documentation/articles/web-sites-publish-source-control/#Step4)
+- When you do a Git deployment, Azure will automatically run `npm install` after each deployment so you don't have to!
+
 ## How does a team work together on a single code-base?
 - The [GitHub Flow](https://guides.github.com/introduction/flow/) process is a proven system for multiple individuals to work together on a single codebase
 - Here's some info on [Pull Requests](https://help.github.com/articles/using-pull-requests/) and [Branches](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) if you would like to better understand them
