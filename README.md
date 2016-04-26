@@ -42,6 +42,20 @@ The instructor will upload datasets for a variety of database platoforms (typica
 - you will likely need additional tables in your database to support user authentication and or other features you decide to build. Do not hesitate to create those additional tables
 
 # Tips and Resources
+## How to Debug Your Azure Web App Instance (or see why its not working...)
+Are you running into an issue where your application is working on your machine, but after you deploy it to Azure, it either won't respond or responds with errors? You would probably like to know what errors are happening on the server so that you can fix those, right? Azure offers a [Web App Administration Tool](http://www.jamessturtevant.com/posts/How-to-add-edit-and-remove-files-in-your-azure-webapp-using-the-kudu-service-dashboard/) called `KUDU` to see what's going on under the covers of your website, but before you dive into that, first think through some logical questions: 
+- Are you using any absolute file paths in your application that won't work when you upload it to a server?
+- Did you upload your entire `npm_modules` folder, or did it only get partially uploaded? If that's taking forever, see below.
+- Is your `web.config` file pointing to the correct file that is the "main entry point" for your application? (app.js, index.js, server.js, etc...)
+
+If you've double checked those points, then it's time to use [KUDU](http://www.jamessturtevant.com/posts/How-to-add-edit-and-remove-files-in-your-azure-webapp-using-the-kudu-service-dashboard/). Simply take your application's Azure URL and stick `.scm.` after the subdomain: 
+- https://my-project.azurewebsites.net => https://my-project.scm.azurewebsites.net
+- Go to "Debug Console > CMD" 
+- Go to the "Logs > Application" folder (if you don't have a logs folder, then turn on [Diagnostic Logging](https://azure.microsoft.com/en-us/documentation/articles/web-sites-enable-diagnostic-log/)
+- To view the contents of a file in the folder, simply click the pencil icon to read the contents. 
+- Typically a file called something like `logging-errors.txt` will have your most recent node errors at the bottom of the file (just look at the timestamps)
+- Usually you can see what the error message is, and then make your fixes accordingly and re-upload. 
+
 ## Deploying to Azure Taking Forever?
 Tired of waiting on your internet connection to upload the huge `node_modules` folder everytime you want to make a deployment. Here are a few tricks to speed it up. 
 #### Run NPM Install on the Server __AFTER__ you copy your code
