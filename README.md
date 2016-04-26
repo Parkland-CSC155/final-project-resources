@@ -72,3 +72,11 @@ Another option for deployments is actually just using Git - [See HERE](https://a
 - The [GitHub Flow](https://guides.github.com/introduction/flow/) process is a proven system for multiple individuals to work together on a single codebase
 - Here's some info on [Pull Requests](https://help.github.com/articles/using-pull-requests/) and [Branches](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) if you would like to better understand them
 - Heres some more [Info on collaborating in GitHub](https://help.github.com/categories/collaborating-on-projects-using-issues-and-pull-requests/)
+
+## How should we work with our Database?
+One important part of the project is that you have to connect to and query a separate database server (not your local SQLite database). So how should you do that during the development process? Well you have a few options: 
+1. Create your cloud database server and then just work directly against that. 
+2. Work locally with a database on your computer, and then have your code switch to the cloud database server after deployment.
+
+#### 1 - Work directly against your cloud database server. 
+If you've created an MSSQL, Postgres, or MySQL server to work with in the cloud, then you should have either a `connectionstring` or some credentials to connect to that database. Simply just use that locally. You'll obviously need a network connection to connect to your cloud database, but you'll also need to [tell your cloud database that you are not a hacker](https://azure.microsoft.com/en-us/documentation/articles/sql-database-configure-firewall-settings/)
