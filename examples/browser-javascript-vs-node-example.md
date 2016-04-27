@@ -60,11 +60,14 @@ It pretty much boils down to doing two things:
 
 ######1 - The Server-Side
 ```
+// This is an express route defined within a NodeJS express application
 // you can use GET, POST, PUT, DELETE
-
 app.get("/an-ajax-route", function(req, res, next){
+
+  // some arbitrary data that you might have loaded from a database
   var car = { make: "Chevrolet", model: "Cruze" };
   
+  // express gives us a `json` function for sending JSON-formatted data back in our response
   res.json(car);
 
 });
@@ -72,6 +75,9 @@ app.get("/an-ajax-route", function(req, res, next){
 
 ######2 - The Client Side
 ```
+// the $ sign is representative of jQuery. jQuery contains the easiest AJAX functionality to get going with.
+// Here we simply send an HTTP GET request back to our express app over the network, and then 
+// use the `car` JSON data that it returns in our app. 
 $.get("/an-ajax-route", function(data){
   
   var car = data; // this should be the JSON that was sent back from the server
