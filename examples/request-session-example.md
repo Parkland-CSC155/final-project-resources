@@ -48,6 +48,6 @@ app.get("/session-example", function(req, res, next){
     { id: 1, qty: 3}
   ];
   
-  res.send("All good");
+  res.send("View Count: " + req.session.viewCount);
 });
 ```
