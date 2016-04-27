@@ -75,8 +75,12 @@ Another option for deployments is actually just using Git - [See HERE](https://a
 
 ## How should we work with our Database?
 One important part of the project is that you have to connect to and query a separate database server (not your local SQLite database). So how should you do that during the development process? Well you have a few options: 
+
 1. Create your cloud database server and then just work directly against that. 
 2. Work locally with a database on your computer, and then have your code switch to the cloud database server after deployment.
 
 #### 1 - Work directly against your cloud database server. 
 If you've created an MSSQL, Postgres, or MySQL server to work with in the cloud, then you should have either a `connectionstring` or some credentials to connect to that database. Simply just use that locally. You'll obviously need a network connection to connect to your cloud database, but you'll also need to [tell your cloud database that you are not a hacker](https://azure.microsoft.com/en-us/documentation/articles/sql-database-configure-firewall-settings/)
+
+#### 2 - Work locally with SQLite then switch to MSSQL or some other db platform.
+In order to easily switch between a local SQLite database and a production database, you need to use a library that can handle the different ways of interacting with different databases. One such popular library is [Sequelize](http://docs.sequelizejs.com/en/latest/docs/getting-started/). It supports [raw SQL queries](http://docs.sequelizejs.com/en/latest/docs/raw-queries/) and provides a way of flipping between SQLite and MSSQL. 
