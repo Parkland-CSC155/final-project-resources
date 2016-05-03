@@ -21,10 +21,14 @@ returns a specific nutrition item by id
 - A login page. Users must authenticate in order to gain access to the rest of the site pages. A great url for this would be `/login`
 - A logout page. Something like `/logout`
 - A list page of nutrition items ordered alphabetically, broken into 25 record pages.
-  - A suggested URL would be: `/list`
+  - A suggested URL would be: `/list` (or you can make it the home page too by using the `/` route)
   - users must be authenticated before going to this page
   - the page should support searching on the name of items
   - the page should have buttons to allow moving through the pages of data. [See Here for some good guidance](https://gist.github.com/brajeshwar/2802235)
+  - this page should support URLs similar to your JSON-based API, but without the `/api` route prefix
+    - `/list?page=3`
+    - `/list?page=5`
+  - Since you should only be able to access this page after logging in, you should not need an API key with any of the requests
 - A page that allows viewing individual nutrition items with their full nutrition information
   - A suggested URL would be: `/details/{id}`
   - users must be authenticated before going to this page
