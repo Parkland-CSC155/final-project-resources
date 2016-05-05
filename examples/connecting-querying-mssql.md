@@ -14,6 +14,15 @@ Let's break this out into its pieces (each one is delimited by a semi-colon):
 - `TrustServerCertificate=no;`
 - `Connection Timeout=30;`: what is the connection timeout (in milliseconds) - often is good to bump to 30 full seconds
 
+#### Configuring your Connection String in your Azure Website
+To store your database connection string your Azure Web App, you can go to your Web App's page in the portal and then do: 
+    __Settings > Application Settings > Connection Strings__  [See Here for step by step](https://azure.microsoft.com/en-us/documentation/articles/web-sites-configure/#application-settings)
+    
+Any value you place in the Connection Strings section will automatically become an environment variable with the prefix `SQLCONNSTR_` in front of it. So if you call your connection string `MS_TableConnectionString` you will be able to access it like so: 
+```javascript
+var cnxString = process.env.SQLCONNSTR_MS_TableConnectionString;
+```
+
 #### Connecting with the `mssql` NPM Package
 In order to connect to a database server with the `mssql` package, you can use a connection string to make the connection
 
