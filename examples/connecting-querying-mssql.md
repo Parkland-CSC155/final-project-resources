@@ -12,7 +12,7 @@ Let's break this out into its pieces (each one is delimited by a semi-colon):
 - `Pwd={your_password_here};`
 - `Encrypt=yes;`: do you want tcp traffic to be encrypted?
 - `TrustServerCertificate=no;`
-- `Connection Timeout=30;`: what is the connection timeout (in milliseconds) - often is good to bump to 30 full seconds
+- `Connection Timeout=30;`: what is the connection timeout (in milliseconds) - often is good to bump to 3 full seconds
 
 #### Configuring your Connection String in your Azure Website
 To store your database connection string your Azure Web App, you can go to your Web App's page in the portal and then do: 
@@ -56,5 +56,6 @@ router.get("/some-url", function (req, res, next) {
 However, sometimes folks will get the following error when they try to connect: 
 `{"name":"ConnectionError","message":"Unknown driver SQL Server Native Client 11.0!","code":"EDRIVER"}`
 
-In order to fix this, simply remove the `Driver={SQL Server Native Client 11.0};` portion from your connection string.
+In order to fix this, simply remove the `Driver={SQL Server Native Client 11.0};` portion from your connection string. Your connection string will then look like: 
+`Server=tcp:some-server.database.windows.net,1433;Database=some-db;Uid=bob@some-server;Pwd={your_password_here};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=3000;`
 
