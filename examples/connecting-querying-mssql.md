@@ -21,7 +21,10 @@ In order to connect to a database server with the `mssql` package, you can use a
 router.get("/some-url", function (req, res, next) {
 
     // the environment variable for the connection string
-    var connectionString = process.env.MS_TableConnectionString; 
+    var connectionString = process.env.SQLCONNSTR_MS_TableConnectionString; 
+    // or you can just hard-code the connection string
+    // var connectionString = "Server=tcp:some-server.database.windows.net,1433;Database=some-db;Uid=bob@some-server;Pwd={your_password_here};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=3000;"
+    
     sql.connect(connectionString).then(function () {
 
         var qry = `SELECT  TOP 1 * FROM NutritionData`;
@@ -36,7 +39,7 @@ router.get("/some-url", function (req, res, next) {
 
     })
     .catch(function(err){
-      console.log(err);
+      console.error(err);
       next(err);  
     });
 });
